@@ -1,6 +1,7 @@
-const express = require('express');
+const express = require('express'); // framework de node
 const path = require('path'); // nativo de node
-const morgan = require('morgan');
+const morgan = require('morgan'); // middleware
+const { urlencoded } = require('express'); // para recibir los datos del form html
 
 // para la conexion con la bd
 const mysql = require('mysql');
@@ -14,9 +15,6 @@ app.set('port', process.env.PORT || 3000);
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// middlewares
-app.use(morgan('dev'));
-
 // bd settings
 const database = {
   host: 'localhost',
@@ -25,7 +23,15 @@ const database = {
   port: 3306,
   database: 'goko_operation'
 }
+
+// middlewares
+app.use(morgan('dev'));
 app.use(mysqlConnection(mysql, database, 'single'));
+app.use(urlencoded({extended: false})); 
+/* 
+  urlencoded, permite entender los datos que vienen desde el formulario de html, 
+  false porque no recibimos imagenes o nada encriptado 
+*/
 
 // importing routes
 const userRoutes = require('./routes/author');
