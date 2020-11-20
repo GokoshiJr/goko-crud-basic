@@ -1,10 +1,11 @@
 {
-  "name": "crud-condominio",
+  "name": "goko-crud-basic",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/main.js"
+    "dev": "nodemon src/main.js",
+    "clean": "prettier --write src/"
   },
   "keywords": [],
   "author": "Julio Gonzalez <julioagonzalez18@gmail.com>",
@@ -17,6 +18,7 @@
     "mysql": "^2.18.1"
   },
   "devDependencies": {
-    "nodemon": "^2.0.6"
+    "nodemon": "^2.0.6",
+    "prettier": "^2.2.0"
   }
 }
