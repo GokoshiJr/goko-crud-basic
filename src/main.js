@@ -7,7 +7,7 @@ const { urlencoded } = require("express"); // para recibir los datos del form ht
 const mysql = require("mysql");
 const mysqlConnection = require("express-myconnection");
 
-// instanciamos una funcion de express que seria el servidor
+// initializations
 const app = express();
 
 // settings
@@ -33,16 +33,17 @@ app.use(urlencoded({ extended: false }));
   false porque no recibimos imagenes o nada encriptado 
 */
 
-// importing routes
-const userRoutes = require("./routes/author");
+// global Variables
 
 // routes
-app.use("/", userRoutes);
+// const userRoutes = require("./routes/author");
+const mainRoute = require("./routes/index")
+app.use("/", mainRoute);
 
-// static files
+// public
 app.use(express.static(path.join(__dirname, "public")));
 
 // starting the server
 app.listen(app.get("port"), () => {
-  console.log(`Server on port 3000`);
+  console.log(`Server on port`, app.get("port"));
 });
